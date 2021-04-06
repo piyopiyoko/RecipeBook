@@ -1,0 +1,42 @@
+//
+//  PageIconCell.swift
+//  RecipeBook
+//
+//  Created by Aimi Itagaki on 2021/03/31.
+//  Copyright © 2021 Aimi Itagaki. All rights reserved.
+//
+
+import UIKit
+
+class PageIconCell: UICollectionViewCell, LoadPictureProtocol {
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    func setup(data: PageIconCollectionViewModel.IconData) {
+        switch data.cellType {
+        case .page:
+            imageView.image = crop(image: data.image)
+        case .plus:
+            imageView.image = R.image.plus()
+        }
+        titleLabel.text = data.title
+    }
+    
+    func setupPlus() {
+        imageView.image = R.image.plus()
+    }
+    
+    private func setupImageView(path: String) {
+        guard let data = load(path: path) else { return }
+        imageView.image = UIImage(data: data)
+    }
+    
+    private func crop(image: UIImage?) -> UIImage? {
+        guard let img = image?.cgImage,
+        let cropImage = img.cropping(to: CGRect(x: 0, y: img.width / 4, width: img.width, height: img.width))
+            else { return nil }
+        
+        return UIImage(cgImage: cropImage)
+    }
+}
