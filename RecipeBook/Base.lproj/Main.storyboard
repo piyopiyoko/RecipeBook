@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -19,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buK-M5-xl1">
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buK-M5-xl1" customClass="WebView" customModule="RecipeBook" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
@@ -48,11 +47,12 @@
                                         <color key="tintColor" red="0.57659065720000002" green="0.56981593370000005" blue="0.95690268280000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </barButtonItem>
                                 </items>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yEW-a2-Oer">
-                                <rect key="frame" x="350" y="675" width="64" height="68"/>
+                                <rect key="frame" x="328" y="675" width="86" height="68"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="lsM-OF-0Dz"/>
+                                    <constraint firstAttribute="width" constant="86" id="lsM-OF-0Dz"/>
                                     <constraint firstAttribute="height" constant="68" id="mob-rN-CkO"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="heartBookMark"/>
@@ -82,19 +82,16 @@
                     <navigationItem key="navigationItem" id="YKK-cq-atJ">
                         <rightBarButtonItems>
                             <barButtonItem title="Item" image="cross" id="M0O-lb-Ifk">
-                                <color key="tintColor" name="mainColor"/>
                                 <connections>
                                     <action selector="tapClose:" destination="BYZ-38-t0r" id="gHd-iv-OFr"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="heart" id="DfM-I7-VQS">
-                                <color key="tintColor" systemColor="systemGrayColor"/>
                                 <connections>
                                     <action selector="tapFavorite:" destination="BYZ-38-t0r" id="sNg-h9-5dd"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="hourglass" id="HPj-QR-qx9">
-                                <color key="tintColor" name="mainColor"/>
                                 <connections>
                                     <action selector="tapTimer:" destination="BYZ-38-t0r" id="9AD-zS-3o6"/>
                                 </connections>
@@ -103,12 +100,14 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="deleteButton" destination="M0O-lb-Ifk" id="qtv-DW-P9D"/>
                         <outlet property="favoriteButton" destination="DfM-I7-VQS" id="EVm-nk-m3k"/>
                         <outlet property="leftButton" destination="UqX-BZ-gJk" id="h8I-rO-cyl"/>
                         <outlet property="progressView" destination="7SJ-WZ-h2d" id="u8A-ws-NUd"/>
                         <outlet property="reloadButton" destination="eMb-bd-lK1" id="F8W-Ou-AhS"/>
                         <outlet property="rightButton" destination="aFd-Rh-Ka8" id="SeQ-q8-l5x"/>
-                        <outlet property="webView" destination="buK-M5-xl1" id="xXE-ue-50O"/>
+                        <outlet property="timerButton" destination="HPj-QR-qx9" id="tnO-gK-DnB"/>
+                        <outlet property="webView" destination="buK-M5-xl1" id="6IY-Yw-LQk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -133,8 +132,8 @@
                                                 <rect key="frame" x="0.0" y="10" width="414" height="80"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h09-1T-1sK">
-                                                    <size key="itemSize" width="60" height="80"/>
-                                                    <size key="estimatedItemSize" width="60" height="80"/>
+                                                    <size key="itemSize" width="50" height="80"/>
+                                                    <size key="estimatedItemSize" width="50" height="80"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -182,6 +181,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="collectionViewHeight" destination="bLI-4q-n0K" id="w2u-kR-pjA"/>
                         <outlet property="pageIconCollectionView" destination="gpB-DV-pq7" id="7oY-Ll-hge"/>
                         <outlet property="pageIconListView" destination="stW-be-LSs" id="FCM-mo-9oo"/>
                         <outlet property="screenEdgePanGesture" destination="Trw-Nc-Fkx" id="ITC-cD-kOI"/>
@@ -475,24 +475,18 @@
     </scenes>
     <color key="tintColor" red="0.57659065720000002" green="0.56981593370000005" blue="0.95690268280000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>
-        <image name="cross" width="32" height="32"/>
-        <image name="heart" width="32" height="32"/>
-        <image name="heartBookMark" width="32" height="32"/>
-        <image name="hourglass" width="32" height="32"/>
-        <image name="left" width="32" height="32"/>
+        <image name="cross" width="20" height="21"/>
+        <image name="heart" width="20" height="18.666666030883789"/>
+        <image name="heartBookMark" width="60" height="40.666667938232422"/>
+        <image name="hourglass" width="11.333333015441895" height="20"/>
+        <image name="left" width="20" height="21.333333969116211"/>
         <image name="pause" width="32" height="32"/>
         <image name="play" width="32" height="32"/>
-        <image name="reload" width="32" height="32"/>
-        <image name="right" width="32" height="32"/>
+        <image name="reload" width="20" height="16.666666030883789"/>
+        <image name="right" width="20" height="21.333333969116211"/>
         <image name="stop" width="32" height="32"/>
-        <namedColor name="mainColor">
-            <color red="0.57647058823529407" green="0.56862745098039214" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

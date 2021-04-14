@@ -19,6 +19,7 @@
 		C2476D4C24FF84C800AE619B /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2476D4B24FF84C700AE619B /* String+.swift */; };
 		C2476D4F2508A13D00AE619B /* LoadPictureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2476D4E2508A13D00AE619B /* LoadPictureProtocol.swift */; };
 		C2476D512508BD9F00AE619B /* OperationFavoriteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2476D502508BD9F00AE619B /* OperationFavoriteProtocol.swift */; };
+		C2587353262427140007C78F /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2587352262427140007C78F /* WebView.swift */; };
 		C25EF00524B7066200D094C7 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25EF00424B7066200D094C7 /* PageViewController.swift */; };
 		C25F37E926131540002CEB70 /* WebViewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F37E826131540002CEB70 /* WebViewListViewController.swift */; };
 		C25F37F126131655002CEB70 /* WebViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F37F026131655002CEB70 /* WebViewListCell.swift */; };
@@ -93,6 +94,7 @@
 		C2476D4B24FF84C700AE619B /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		C2476D4E2508A13D00AE619B /* LoadPictureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPictureProtocol.swift; sourceTree = "<group>"; };
 		C2476D502508BD9F00AE619B /* OperationFavoriteProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationFavoriteProtocol.swift; sourceTree = "<group>"; };
+		C2587352262427140007C78F /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		C25EF00424B7066200D094C7 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		C25F37E826131540002CEB70 /* WebViewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewListViewController.swift; sourceTree = "<group>"; };
 		C25F37F026131655002CEB70 /* WebViewListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewListCell.swift; sourceTree = "<group>"; };
@@ -198,8 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				C25EF00424B7066200D094C7 /* PageViewController.swift */,
-				C2FFF7A724080D1A00005106 /* WebViewController.swift */,
-				C285FADC2552773900A29925 /* WebViewViewModel.swift */,
 				C25F37FF26140B3D002CEB70 /* PageIconCell.xib */,
 				C25F380426140BA9002CEB70 /* PageIconCell.swift */,
 				C25F380926140F09002CEB70 /* PageIconCollectionView.swift */,
@@ -245,6 +245,16 @@
 				C2F69BB025776AFC00EC2F0B /* Time.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		C25873572624299F0007C78F /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				C2FFF7A724080D1A00005106 /* WebViewController.swift */,
+				C285FADC2552773900A29925 /* WebViewViewModel.swift */,
+				C2587352262427140007C78F /* WebView.swift */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 		C25F37E7261314F4002CEB70 /* WebViewList */ = {
@@ -306,6 +316,7 @@
 				C2476D4D2508A10300AE619B /* Common */,
 				C2476D4A24FF84B400AE619B /* Extension */,
 				C2179C8724DA94CF0069599C /* Favorite */,
+				C25873572624299F0007C78F /* WebView */,
 				C2179C8624DA94B00069599C /* Page */,
 				C2F69BA42562396B00EC2F0B /* Timer */,
 				C2179C8524DA93380069599C /* Model */,
@@ -612,6 +623,7 @@
 				C25EF00524B7066200D094C7 /* PageViewController.swift in Sources */,
 				C2F69BB125776AFC00EC2F0B /* Time.swift in Sources */,
 				C2FFF7A424080D1A00005106 /* AppDelegate.swift in Sources */,
+				C2587353262427140007C78F /* WebView.swift in Sources */,
 				C27BA68324ADBBCD00B82F53 /* FavoriteListCell.swift in Sources */,
 				C25F37E926131540002CEB70 /* WebViewListViewController.swift in Sources */,
 				C2179C8024DA90D00069599C /* Coredata.swift in Sources */,

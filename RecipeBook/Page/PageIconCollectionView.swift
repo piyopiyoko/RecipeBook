@@ -26,12 +26,16 @@ class PageIconCollectionView: UICollectionView {
         self.topViewControllerDelegate = topViewControllerDelegate
     }
     
-    func updateThumbnail(image: UIImage?, index: Int) {
-        viewModel.updateThumbnail(image: image, index: index)
+    func update(image: UIImage?, title: String?, index: Int) {
+        viewModel.update(image: image, title: title, index: index)
     }
     
-    func update(title: String, index: Int) {
-        viewModel.update(title: title, index: index)
+    func remove(index: Int) {
+        viewModel.remove(index: index)
+    }
+    
+    func addLastCell() {
+        viewModel.addLast()
     }
     
     private func initCollectionViewData() {

@@ -26,15 +26,23 @@ class PageIconCollectionViewModel {
         dataList.accept(dataList.value + [IconData(cellType: .page, image: nil)])
     }
     
-    func updateThumbnail(image: UIImage?, index: Int) {
+    func update(image: UIImage?, title: String?, index: Int) {
         var data = dataList.value
         data[index].image = image
+        data[index].title = title
         dataList.accept(data)
     }
     
-    func update(title: String, index: Int) {
+    func remove(index: Int) {
+        if index >= dataList.value.count { return }
         var data = dataList.value
-        data[index].title = title
+        data.remove(at: index)
+        dataList.accept(data)
+    }
+    
+    func addLast() {
+        var data = dataList.value
+        data.append(IconData(cellType: .page))
         dataList.accept(data)
     }
     

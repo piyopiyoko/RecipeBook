@@ -497,7 +497,6 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "right", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'right' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "stop", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'stop' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
-          if UIKit.UIColor(named: "mainColor", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'mainColor' is used in storyboard 'Main', but couldn't be loaded.") }
         }
         if _R.storyboard.main().favoriteListViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'favoriteListViewController' could not be loaded from storyboard 'Main' as 'FavoriteListViewController'.") }
         if _R.storyboard.main().favoriteNavigationController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'favoriteNavigationController' could not be loaded from storyboard 'Main' as 'FavoriteListNavigationController'.") }

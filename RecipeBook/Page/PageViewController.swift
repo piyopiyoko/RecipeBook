@@ -111,20 +111,21 @@ extension PageViewController: UIPageViewControllerDataSource {
 
 extension PageViewController: OperationPageViewController {
     func loadFavorite(url: String) {
+        topViewControllerDelegate?.addLast()
         addPage(url: url)
-        setViewControllers([pages.last ?? UIViewController()], direction: .forward, animated: true, completion: nil)
     }
     
     func closePage(index: Int) {
         self.deletePage(index: index)
+        topViewControllerDelegate?.remove(index: index)
     }
     
-    func updateThumbnail(image: UIImage?, index: Int) {
-        topViewControllerDelegate?.updateThumbnail(image: image, index: index)
+    func update(image: UIImage?, title: String?, index: Int) {
+        topViewControllerDelegate?.update(image: image, title: title, index: index)
     }
     
-    func update(title: String, index: Int) {
-        topViewControllerDelegate?.update(title: title, index: index)
+    func setPageIconCollectionView(isHidden: Bool) {
+        topViewControllerDelegate?.setPageIconCollectionView(isHidden: isHidden)
     }
 }
 

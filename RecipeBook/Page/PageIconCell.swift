@@ -13,6 +13,11 @@ class PageIconCell: UICollectionViewCell, LoadPictureProtocol {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        initImageView()
+    }
+    
     func setup(data: PageIconCollectionViewModel.IconData) {
         switch data.cellType {
         case .page:
@@ -23,8 +28,9 @@ class PageIconCell: UICollectionViewCell, LoadPictureProtocol {
         titleLabel.text = data.title
     }
     
-    func setupPlus() {
-        imageView.image = R.image.plus()
+    private func initImageView() {
+        imageView.layer.cornerRadius = imageView.frame.width / 2
+        imageView.clipsToBounds = true
     }
     
     private func setupImageView(path: String) {

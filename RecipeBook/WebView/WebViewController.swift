@@ -17,12 +17,14 @@ class WebViewController: UIViewController {
     var loadUrl: String?
     weak var operationPageViewController: OperationPageViewController?
 
-    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var webView: WebView!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var leftButton: UIBarButtonItem!
     @IBOutlet weak var rightButton: UIBarButtonItem!
     @IBOutlet weak var reloadButton: UIBarButtonItem!
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    @IBOutlet weak var deleteButton: UIBarButtonItem!
+    @IBOutlet weak var timerButton: UIBarButtonItem!
     
     private let disposeBag = DisposeBag()
     private var timer: Timer?
@@ -31,7 +33,9 @@ class WebViewController: UIViewController {
         navigationController?.view.tag ?? 0
     }
     
-    static func initWebViewController(tag: Int, url: String?, operationPageViewController: OperationPageViewController?) -> UINavigationController? {
+    static func initWebViewController(tag: Int,
+                                      url: String?,
+                                      operationPageViewController: OperationPageViewController?) -> UINavigationController? {
         guard let nc = R.storyboard.main.navigationController(),
             let vc = nc.topViewController as? WebViewController else { return nil }
         nc.view.tag = tag
@@ -50,6 +54,8 @@ class WebViewController: UIViewController {
         setupReload()
         becomeActive()
         bindFavorite()
+        initDeleteButton()
+        initTimerButton()
     }
     
     @IBAction func tapClose(_ sender: Any) {
@@ -87,6 +93,7 @@ class WebViewController: UIViewController {
     }
     
     private func setupWebView() {
+        webView.set(operationPageViewController: operationPageViewController)
         loadWebView()
         webView.navigationDelegate = self
         webView.uiDelegate = self
@@ -110,7 +117,7 @@ class WebViewController: UIViewController {
     }
     
     private func updateThumbnail(image: UIImage?) {
-        operationPageViewController?.updateThumbnail(image: image, index: index)
+        operationPageViewController?.update(image: image, title: webView.title, index: index)
     }
     
     private func setupProgressView() {
@@ -130,9 +137,10 @@ class WebViewController: UIViewController {
     }
     
     private func setupBackButton() {
+        leftButton.image = R.image.left()?.withRenderingMode(.alwaysOriginal)
         webView.rx.canGoBack.asDriver(onErrorJustReturn: false)
             .drive(onNext: { [weak self] canGoBack in
-                self?.leftButton.isEnabled = canGoBack
+                self?.setupButton(self?.leftButton, image: R.image.left(), isEnabled: canGoBack)
             }).disposed(by: disposeBag)
         
         leftButton.rx.tap.asDriver()
@@ -145,7 +153,7 @@ class WebViewController: UIViewController {
         
         webView.rx.canGoForward.asDriver(onErrorJustReturn: false)
         .drive(onNext: { [weak self] canGoForward in
-            self?.rightButton.isEnabled = canGoForward
+            self?.setupButton(self?.rightButton, image: R.image.right(), isEnabled: canGoForward)
         }).disposed(by: disposeBag)
         
         rightButton.rx.tap.asDriver()
@@ -154,7 +162,17 @@ class WebViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
     
+    private func setupButton(_ button: UIBarButtonItem?, image: UIImage?, isEnabled: Bool) {
+        if isEnabled {
+            button?.image = image?.withRenderingMode(.alwaysOriginal)
+        } else {
+            button?.image = image
+        }
+        button?.isEnabled = isEnabled
+    }
+    
     private func setupReload() {
+        reloadButton.image = R.image.reload()?.withRenderingMode(.alwaysOriginal)
         reloadButton.rx.tap.asDriver()
             .drive(onNext: { [weak self] _ in
                 self?.webView.reload()
@@ -178,12 +196,29 @@ class WebViewController: UIViewController {
     
     private func bindFavorite() {
         viewModel.isFavoriteObserver.subscribe(onNext: { [weak self] isFavorite in
-            self?.favoriteButton.tintColor = isFavorite ? R.color.favoriteColor() : .gray
+            self?.setFavoriteImage(isFavorite: isFavorite)
             }).disposed(by: disposeBag)
     }
     
     private func initFavoriteButton() {
         viewModel.checkFavorite(url: webView.url)
+    }
+    
+    private func setFavoriteImage(isFavorite: Bool) {
+        if isFavorite {
+            favoriteButton.image = R.image.heart()?.withRenderingMode(.alwaysOriginal)
+        } else {
+            favoriteButton.image = R.image.heart()
+            favoriteButton.tintColor = .gray
+        }
+    }
+    
+    private func initDeleteButton() {
+        deleteButton.image = R.image.cross()?.withRenderingMode(.alwaysOriginal)
+    }
+    
+    private func initTimerButton() {
+        timerButton.image = R.image.hourglass()?.withRenderingMode(.alwaysOriginal)
     }
 }
 
@@ -203,10 +238,6 @@ extension WebViewController: WKNavigationDelegate {
               navigationAction.request.mainDocumentURL?.absoluteString == requestUrl.absoluteString else {
             decisionHandler(.allow)
             return
-        }
-        
-        if let title = substringKeyword(text: requestUrl.absoluteString)?.removingPercentEncoding {
-            operationPageViewController?.update(title: title, index: index)
         }
         
         decisionHandler(.allow)
