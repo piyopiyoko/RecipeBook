@@ -12,7 +12,7 @@ import RxCocoa
 import RxSwift
 import RxWebKit
 
-class WebViewController: UIViewController {
+class WebViewController: UIViewController, ShowTimeUpViewControllerProtocol {
     
     var loadUrl: String?
     weak var operationPageViewController: OperationPageViewController?
@@ -32,6 +32,7 @@ class WebViewController: UIViewController {
     private var index: Int {
         navigationController?.view.tag ?? 0
     }
+    private var favoriteListButton: UIButton?
     
     static func initWebViewController(tag: Int,
                                       url: String?,
@@ -56,6 +57,8 @@ class WebViewController: UIViewController {
         bindFavorite()
         initDeleteButton()
         initTimerButton()
+        initFavoriteListButton()
+        bindTimeUpObserver()
     }
     
     @IBAction func tapClose(_ sender: Any) {
@@ -70,20 +73,7 @@ class WebViewController: UIViewController {
             takeScreenShot()
         }
     }
-    
-    @IBAction func tapFavoriteList(_ sender: Any) {
-        guard let vc = FavoriteListViewController.initFavoriteListViewController(
-            operationPageViewController: operationPageViewController) else { return }
-        vc.presentationController?.delegate = self
-        present(vc, animated: true, completion: nil)
-    }
-    
-    @IBAction func tapTimer(_ sender: Any) {
-        
-        guard let vc = R.storyboard.main.timerViewController() else { return }
-        present(vc, animated: true, completion: nil)
-    }
-    
+
     func goBack() {
         webView.goBack()
     }
@@ -93,7 +83,7 @@ class WebViewController: UIViewController {
     }
     
     private func setupWebView() {
-        webView.set(operationPageViewController: operationPageViewController)
+        webView.set(operationPageViewController: operationPageViewController, webViewControllerDelegate: self)
         loadWebView()
         webView.navigationDelegate = self
         webView.uiDelegate = self
@@ -218,7 +208,55 @@ class WebViewController: UIViewController {
     }
     
     private func initTimerButton() {
-        timerButton.image = R.image.hourglass()?.withRenderingMode(.alwaysOriginal)
+        timerButton.customView = TimerIconView()
+        timerButton.customView?.addGestureRecognizer(tapGesture())
+    }
+    
+    private func tapGesture() -> UITapGestureRecognizer {
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.rx.event.bind(onNext: { [weak self] _ in
+            self?.goToTimerViewController()
+        })
+        .disposed(by: disposeBag)
+        
+        return tapGesture
+    }
+    
+    private func goToTimerViewController() {
+        guard let vc = R.storyboard.main.timerViewController() else { return }
+        present(vc, animated: true, completion: nil)
+    }
+    
+    private func initFavoriteListButton() {
+        let width: CGFloat = 70
+        let height: CGFloat = 50
+        favoriteListButton = UIButton(frame: CGRect(x: self.view.frame.width - width, y: self.view.frame.height - 250 - height, width: width, height: height))
+        favoriteListButton?.setImage(R.image.heartBookMark(), for: .normal)
+        favoriteListButton?.imageView?.contentMode = .scaleToFill
+        favoriteListButton?.contentHorizontalAlignment = .fill
+        favoriteListButton?.contentVerticalAlignment = .fill
+        favoriteListButton?.rx.tap.subscribe(onNext: { [weak self] in
+            self?.goToFavoriteList()
+        })
+        .disposed(by: disposeBag)
+        guard let button = favoriteListButton else { return }
+        self.view.addSubview(button)
+    }
+    
+    private func goToFavoriteList() {
+        
+        guard let vc = FavoriteListViewController.initFavoriteListViewController(
+            operationPageViewController: operationPageViewController) else { return }
+        vc.presentationController?.delegate = self
+        present(vc, animated: true, completion: nil)
+    }
+    
+    private func bindTimeUpObserver() {
+        viewModel.timeUpObserver
+            .subscribe(onNext: { [weak self] time in
+                self?.showTimeUpViewController(time: time)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -264,5 +302,29 @@ extension WebViewController: WKUIDelegate {
         }
 
         return nil
+    }
+}
+
+extension WebViewController: WebViewControllerDelegate {
+    func setFavoriteListButton(isHidden: Bool) {
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+            self?.animationFavoriteListButton(isHidden: isHidden)
+        })
+    }
+    
+    private func animationFavoriteListButton(isHidden: Bool) {
+        guard let frame = favoriteListButton?.frame else { return }
+        let x = isHidden ? view.frame.width : view.frame.width - frame.width
+        favoriteListButton?.frame = CGRect(x: x, y: frame.origin.y, width: frame.width, height: frame.height)
+    }
+}
+
+protocol WebViewControllerDelegate {
+    func setFavoriteListButton(isHidden: Bool)
+}
+
+extension WebViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        CustomPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }

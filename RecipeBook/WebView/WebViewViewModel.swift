@@ -14,6 +14,7 @@ class WebViewViewModel: SavePictureProtocol, OperationFavoriteProtocol {
     
     var isFavoriteObserver: Observable<Bool> { isFavoriteRelay.asObservable() }
     var isFavorite: Bool { isFavoriteRelay.value }
+    var timeUpObserver = SharedTimer.shared.timeUpObserver
     private let isFavoriteRelay = BehaviorRelay<Bool>(value: false)
     
     func checkFavorite(url: URL?) {

@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class TimerViewController: UIViewController {
+class TimerViewController: UIViewController, ShowTimeUpViewControllerProtocol {
     
     @IBOutlet weak var hourPickerView: UIPickerView!
     @IBOutlet weak var minutesPickerView: UIPickerView!
@@ -31,6 +31,7 @@ class TimerViewController: UIViewController {
         bindTimerView()
         bindTimerLabel()
         bindHidePause()
+        bindShowTimeUpViewController()
     }
     
     @IBAction func tapPlay(_ sender: Any) {
@@ -91,5 +92,19 @@ class TimerViewController: UIViewController {
     
     private func bindHidePause() {
         viewModel.hidePauseObserver.bind(to: pauseButton.rx.isHidden).disposed(by: disposeBag)
+    }
+    
+    private func bindShowTimeUpViewController() {
+        viewModel.timeUpObserver
+            .subscribe(onNext: { [weak self] time in
+                self?.showTimeUpViewController(time: time)
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+extension TimerViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        CustomPresentationController(presentedViewController: presented, presenting: presenting)
     }
 }

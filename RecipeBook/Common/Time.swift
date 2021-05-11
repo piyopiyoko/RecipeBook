@@ -23,6 +23,10 @@ struct Time {
         return intervalTime <= 0
     }
     
+    var isZero: Bool {
+        hour <= 0 && minutes <= 0 && second <= 0
+    }
+    
     mutating func set(hour: String?) {
         guard let hour = hour else { return }
         self.hour = Int(hour) ?? 0
@@ -43,10 +47,10 @@ struct Time {
             second -= 1
         } else if minutes > 0 {
             minutes -= 1
-            second = 60
+            second = 59
         } else if hour > 0 {
             hour -= 1
-            minutes = 60
+            minutes = 59
         }
     }
 }

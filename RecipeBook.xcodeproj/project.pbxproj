@@ -12,6 +12,7 @@
 		C2179C8224DA92EE0069599C /* AnyObjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2179C8124DA92EE0069599C /* AnyObjectModel.swift */; };
 		C2179C8924DA95060069599C /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2179C8824DA95060069599C /* FavoriteModel.swift */; };
 		C2179C8B24DA95BF0069599C /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2179C8A24DA95BF0069599C /* FavoriteViewModel.swift */; };
+		C218002426301DEB00D123CD /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = C218002326301DEB00D123CD /* Common.swift */; };
 		C245E74F255BB36E008AFE2D /* FavoriteListViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C245E74E255BB36E008AFE2D /* FavoriteListViewControllerDelegate.swift */; };
 		C245E751255BCFC5008AFE2D /* FavoriteListNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C245E750255BCFC5008AFE2D /* FavoriteListNavigationController.swift */; };
 		C2476D4724ECF73900AE619B /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2476D4624ECF73900AE619B /* R.generated.swift */; };
@@ -20,6 +21,11 @@
 		C2476D4F2508A13D00AE619B /* LoadPictureProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2476D4E2508A13D00AE619B /* LoadPictureProtocol.swift */; };
 		C2476D512508BD9F00AE619B /* OperationFavoriteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2476D502508BD9F00AE619B /* OperationFavoriteProtocol.swift */; };
 		C2587353262427140007C78F /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2587352262427140007C78F /* WebView.swift */; };
+		C25EDA3D2629B42600B79B86 /* hiyoko.gif in Resources */ = {isa = PBXBuildFile; fileRef = C25EDA3C2629B42600B79B86 /* hiyoko.gif */; };
+		C25EDA422629B58200B79B86 /* GifAnimateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25EDA412629B58200B79B86 /* GifAnimateView.swift */; };
+		C25EDA4A262DA45400B79B86 /* TimeUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25EDA49262DA45400B79B86 /* TimeUpViewController.swift */; };
+		C25EDA4F262EB6F700B79B86 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25EDA4E262EB6F700B79B86 /* CustomPresentationController.swift */; };
+		C25EDA55262FBDC000B79B86 /* SharedTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25EDA54262FBDC000B79B86 /* SharedTimer.swift */; };
 		C25EF00524B7066200D094C7 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25EF00424B7066200D094C7 /* PageViewController.swift */; };
 		C25F37E926131540002CEB70 /* WebViewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F37E826131540002CEB70 /* WebViewListViewController.swift */; };
 		C25F37F126131655002CEB70 /* WebViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25F37F026131655002CEB70 /* WebViewListCell.swift */; };
@@ -36,6 +42,9 @@
 		C27BA68324ADBBCD00B82F53 /* FavoriteListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27BA68224ADBBCD00B82F53 /* FavoriteListCell.swift */; };
 		C285FADB2540110F00A29925 /* FavoriteListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C285FADA2540110F00A29925 /* FavoriteListCellViewModel.swift */; };
 		C285FADD2552773900A29925 /* WebViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C285FADC2552773900A29925 /* WebViewViewModel.swift */; };
+		C29973EE263009EC001844AF /* TimerIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C29973ED263009EC001844AF /* TimerIconView.xib */; };
+		C29973F326300AE3001844AF /* TimerIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29973F226300AE3001844AF /* TimerIconView.swift */; };
+		C2CE8786263933E700FC8918 /* ShowTimeUpViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CE8785263933E700FC8918 /* ShowTimeUpViewControllerProtocol.swift */; };
 		C2E53508247505AF0075ACEC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2E53507247505AF0075ACEC /* WebKit.framework */; };
 		C2F69BA6256239DD00EC2F0B /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2F69BA5256239DD00EC2F0B /* TimerViewController.swift */; };
 		C2F69BA92563B5D100EC2F0B /* chick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C2F69BA82563B5D000EC2F0B /* chick.mp3 */; };
@@ -87,6 +96,7 @@
 		C2179C8124DA92EE0069599C /* AnyObjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObjectModel.swift; sourceTree = "<group>"; };
 		C2179C8824DA95060069599C /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
 		C2179C8A24DA95BF0069599C /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
+		C218002326301DEB00D123CD /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		C245E74E255BB36E008AFE2D /* FavoriteListViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewControllerDelegate.swift; sourceTree = "<group>"; };
 		C245E750255BCFC5008AFE2D /* FavoriteListNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListNavigationController.swift; sourceTree = "<group>"; };
 		C2476D4624ECF73900AE619B /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
@@ -95,6 +105,11 @@
 		C2476D4E2508A13D00AE619B /* LoadPictureProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPictureProtocol.swift; sourceTree = "<group>"; };
 		C2476D502508BD9F00AE619B /* OperationFavoriteProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationFavoriteProtocol.swift; sourceTree = "<group>"; };
 		C2587352262427140007C78F /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		C25EDA3C2629B42600B79B86 /* hiyoko.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hiyoko.gif; sourceTree = "<group>"; };
+		C25EDA412629B58200B79B86 /* GifAnimateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifAnimateView.swift; sourceTree = "<group>"; };
+		C25EDA49262DA45400B79B86 /* TimeUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUpViewController.swift; sourceTree = "<group>"; };
+		C25EDA4E262EB6F700B79B86 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
+		C25EDA54262FBDC000B79B86 /* SharedTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTimer.swift; sourceTree = "<group>"; };
 		C25EF00424B7066200D094C7 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		C25F37E826131540002CEB70 /* WebViewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewListViewController.swift; sourceTree = "<group>"; };
 		C25F37F026131655002CEB70 /* WebViewListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewListCell.swift; sourceTree = "<group>"; };
@@ -111,6 +126,9 @@
 		C27BA68224ADBBCD00B82F53 /* FavoriteListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListCell.swift; sourceTree = "<group>"; };
 		C285FADA2540110F00A29925 /* FavoriteListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListCellViewModel.swift; sourceTree = "<group>"; };
 		C285FADC2552773900A29925 /* WebViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewModel.swift; sourceTree = "<group>"; };
+		C29973ED263009EC001844AF /* TimerIconView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimerIconView.xib; sourceTree = "<group>"; };
+		C29973F226300AE3001844AF /* TimerIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerIconView.swift; sourceTree = "<group>"; };
+		C2CE8785263933E700FC8918 /* ShowTimeUpViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowTimeUpViewControllerProtocol.swift; sourceTree = "<group>"; };
 		C2E53507247505AF0075ACEC /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		C2F69BA5256239DD00EC2F0B /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		C2F69BA82563B5D000EC2F0B /* chick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chick.mp3; sourceTree = "<group>"; };
@@ -205,7 +223,6 @@
 				C25F380926140F09002CEB70 /* PageIconCollectionView.swift */,
 				C25F380E261412FD002CEB70 /* PageIconCollectionViewModel.swift */,
 				C26BC6B4252AB45800C7D946 /* OperationPageViewController.swift */,
-				C25F381326141A6E002CEB70 /* TopViewController.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -236,6 +253,7 @@
 		C2476D4D2508A10300AE619B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C218002326301DEB00D123CD /* Common.swift */,
 				C2179C7F24DA90D00069599C /* Coredata.swift */,
 				C2476D4824FF83A000AE619B /* SavePictureProtocol.swift */,
 				C2476D4E2508A13D00AE619B /* LoadPictureProtocol.swift */,
@@ -243,6 +261,7 @@
 				C2F69BAC256E240E00EC2F0B /* TimerProtocol.swift */,
 				C2F69BAE256E2E9500EC2F0B /* AudioPlayer.swift */,
 				C2F69BB025776AFC00EC2F0B /* Time.swift */,
+				C25EDA412629B58200B79B86 /* GifAnimateView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -253,8 +272,18 @@
 				C2FFF7A724080D1A00005106 /* WebViewController.swift */,
 				C285FADC2552773900A29925 /* WebViewViewModel.swift */,
 				C2587352262427140007C78F /* WebView.swift */,
+				C29973ED263009EC001844AF /* TimerIconView.xib */,
+				C29973F226300AE3001844AF /* TimerIconView.swift */,
 			);
 			path = WebView;
+			sourceTree = "<group>";
+		};
+		C25EDA53262FBDA600B79B86 /* Top */ = {
+			isa = PBXGroup;
+			children = (
+				C25F381326141A6E002CEB70 /* TopViewController.swift */,
+			);
+			path = Top;
 			sourceTree = "<group>";
 		};
 		C25F37E7261314F4002CEB70 /* WebViewList */ = {
@@ -273,6 +302,10 @@
 			children = (
 				C2F69BA5256239DD00EC2F0B /* TimerViewController.swift */,
 				C2F69BAA25650F2300EC2F0B /* TimerViewModel.swift */,
+				C25EDA49262DA45400B79B86 /* TimeUpViewController.swift */,
+				C25EDA4E262EB6F700B79B86 /* CustomPresentationController.swift */,
+				C25EDA54262FBDC000B79B86 /* SharedTimer.swift */,
+				C2CE8785263933E700FC8918 /* ShowTimeUpViewControllerProtocol.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -281,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				C2F69BA82563B5D000EC2F0B /* chick.mp3 */,
+				C25EDA3C2629B42600B79B86 /* hiyoko.gif */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -311,6 +345,7 @@
 		C2FFF7A224080D1A00005106 /* RecipeBook */ = {
 			isa = PBXGroup;
 			children = (
+				C25EDA53262FBDA600B79B86 /* Top */,
 				C25F37E7261314F4002CEB70 /* WebViewList */,
 				C2F69BA72563B5AB00EC2F0B /* Resource */,
 				C2476D4D2508A10300AE619B /* Common */,
@@ -462,9 +497,11 @@
 				C2FFF7B324080D1C00005106 /* LaunchScreen.storyboard in Resources */,
 				C2F69BA92563B5D100EC2F0B /* chick.mp3 in Resources */,
 				C2FFF7B024080D1C00005106 /* Assets.xcassets in Resources */,
+				C25EDA3D2629B42600B79B86 /* hiyoko.gif in Resources */,
 				C25F37F626131673002CEB70 /* WebViewListCell.xib in Resources */,
 				C27BA68124ADBB9900B82F53 /* FavoriteListCell.xib in Resources */,
 				C2FFF7AB24080D1A00005106 /* Main.storyboard in Resources */,
+				C29973EE263009EC001844AF /* TimerIconView.xib in Resources */,
 				C25F380026140B3D002CEB70 /* PageIconCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -615,11 +652,13 @@
 				C2476D4F2508A13D00AE619B /* LoadPictureProtocol.swift in Sources */,
 				C285FADD2552773900A29925 /* WebViewViewModel.swift in Sources */,
 				C2FFF7A824080D1A00005106 /* WebViewController.swift in Sources */,
+				C2CE8786263933E700FC8918 /* ShowTimeUpViewControllerProtocol.swift in Sources */,
 				C25F37FB26133EDB002CEB70 /* WebViewModel.swift in Sources */,
 				C25F380A26140F09002CEB70 /* PageIconCollectionView.swift in Sources */,
 				C285FADB2540110F00A29925 /* FavoriteListCellViewModel.swift in Sources */,
 				C2179C8924DA95060069599C /* FavoriteModel.swift in Sources */,
 				C25F37F126131655002CEB70 /* WebViewListCell.swift in Sources */,
+				C218002426301DEB00D123CD /* Common.swift in Sources */,
 				C25EF00524B7066200D094C7 /* PageViewController.swift in Sources */,
 				C2F69BB125776AFC00EC2F0B /* Time.swift in Sources */,
 				C2FFF7A424080D1A00005106 /* AppDelegate.swift in Sources */,
@@ -628,6 +667,10 @@
 				C25F37E926131540002CEB70 /* WebViewListViewController.swift in Sources */,
 				C2179C8024DA90D00069599C /* Coredata.swift in Sources */,
 				C25F380F261412FD002CEB70 /* PageIconCollectionViewModel.swift in Sources */,
+				C29973F326300AE3001844AF /* TimerIconView.swift in Sources */,
+				C25EDA55262FBDC000B79B86 /* SharedTimer.swift in Sources */,
+				C25EDA4A262DA45400B79B86 /* TimeUpViewController.swift in Sources */,
+				C25EDA4F262EB6F700B79B86 /* CustomPresentationController.swift in Sources */,
 				C25F380526140BA9002CEB70 /* PageIconCell.swift in Sources */,
 				C245E74F255BB36E008AFE2D /* FavoriteListViewControllerDelegate.swift in Sources */,
 				C245E751255BCFC5008AFE2D /* FavoriteListNavigationController.swift in Sources */,
@@ -645,6 +688,7 @@
 				C2476D4C24FF84C800AE619B /* String+.swift in Sources */,
 				C2F69BA6256239DD00EC2F0B /* TimerViewController.swift in Sources */,
 				C2476D4924FF83A000AE619B /* SavePictureProtocol.swift in Sources */,
+				C25EDA422629B58200B79B86 /* GifAnimateView.swift in Sources */,
 				C2F69BAB25650F2300EC2F0B /* TimerViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

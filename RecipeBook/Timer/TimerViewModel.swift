@@ -18,24 +18,27 @@ class TimerViewModel {
     var countDownTimeObserver: Observable<String> { countDownTimeRelay.map { $0.displayTime }.asObservable() }
     var hidePauseObserver: Observable<Bool> { playRelay.map { !$0 } }
     var playButtonEnableObserver: Observable<Bool> { playButtonEnableRelay.asObservable() }
+    var timeUpObserver = SharedTimer.shared.timeUpObserver
     
     private let hourRelay = BehaviorRelay<[String]>(value: Array<Int>(0...23).map { String($0) })
     private let minutesRelay = BehaviorRelay<[String]>(value: Array<Int>(0...59).map { String($0) })
     private let secondRelay = BehaviorRelay<[String]>(value: Array<Int>(0...59).map { String($0) })
     
-    private var time = Time(hour: 0, minutes: 0, second: 0)
-    private var countDownTimeRelay = BehaviorRelay<Time>(value: Time(hour: 0, minutes: 0, second: 0))
-    private var hideTimerRelay = BehaviorRelay<Bool>(value: true)
-    private var playRelay = BehaviorRelay<Bool>(value: false)
+    private var time: Time {
+        get { SharedTimer.shared.time }
+        set { SharedTimer.shared.time = newValue }
+    }
+    private let countDownTimeRelay = SharedTimer.shared.countDownTimeRelay
+    private var playRelay = SharedTimer.shared.playRelay
+    
+    private let hideTimerRelay = BehaviorRelay<Bool>(value: true)
     
     private let disposeBag = DisposeBag()
-    
-    private let audioPlayer = AudioPlayer()
     
     private var playButtonEnableRelay = BehaviorRelay<Bool>(value: false)
     
     init() {
-        initCountDownTime()
+        bindUpdateCountDown()
     }
     
     func set(hour: String?) {
@@ -51,6 +54,7 @@ class TimerViewModel {
     }
     
     func play() {
+        if time.isZero { return }
         playRelay.accept(true)
         hideTimerRelay.accept(false)
         countDownTimeRelay.accept(time)
@@ -66,23 +70,16 @@ class TimerViewModel {
         hideTimerRelay.accept(true)
     }
     
-    private func initCountDownTime() {
-        playRelay
-            .flatMapLatest { $0 ?  Observable<Int>.interval(RxTimeInterval.seconds(1), scheduler: MainScheduler.instance) : Observable.empty() }
+    private func bindUpdateCountDown() {
+        SharedTimer.shared.timeUpObserver
             .subscribe(onNext: { [weak self] _ in
-                self?.updateCountDownTimeRelay()
-            }).disposed(by: disposeBag)
+                self?.updateTimeUp()
+            })
+            .disposed(by: disposeBag)
     }
     
-    private func updateCountDownTimeRelay() {
-        var time = countDownTimeRelay.value
-        time.countDown()
-        countDownTimeRelay.accept(time)
-        if time.timeUp {
-            audioPlayer?.playSound()
-            playRelay.accept(false)
-            hideTimerRelay.accept(true)
-        }
+    private func updateTimeUp() {
+        hideTimerRelay.accept(true)
     }
     
     private func sendNotification() {

@@ -31,6 +31,8 @@ class PageIconCell: UICollectionViewCell, LoadPictureProtocol {
     private func initImageView() {
         imageView.layer.cornerRadius = imageView.frame.width / 2
         imageView.clipsToBounds = true
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = R.color.lightGray()?.cgColor
     }
     
     private func setupImageView(path: String) {

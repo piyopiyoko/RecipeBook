@@ -10,9 +10,7 @@ import UIKit
 
 class TopViewController: UIViewController {
     
-    @IBOutlet weak var pageIconListView: UIView!
     @IBOutlet weak var pageIconCollectionView: PageIconCollectionView!
-    @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet var screenEdgePanGesture: UIScreenEdgePanGestureRecognizer!
     
     private var pageViewControllerDelegate: PageViewControllerDelegate? {
@@ -72,7 +70,6 @@ extension TopViewController: TopViewControllerDelegate {
     func setPageIconCollectionView(isHidden: Bool) {
         pageIconCollectionView.isHidden = isHidden
         
-        collectionViewHeight.constant = isHidden ? 0 : 100
         UIView.animate(withDuration: 0.5, animations: { [weak self] in
             self?.view.layoutIfNeeded()
         })

@@ -44,7 +44,7 @@ class PageViewController: UIPageViewController {
     }
     
     private func deletePage(index: Int) {
-        if pages.count <= 1 { return }
+        if pages.count <= 0 { return }
         movePage(index: index)
         pages.remove(at: index)
         resetAllTag()
@@ -59,7 +59,6 @@ class PageViewController: UIPageViewController {
         }
         else {
             addPage()
-            setDispPage(vc: pages[1])
         }
     }
     
@@ -117,7 +116,9 @@ extension PageViewController: OperationPageViewController {
     
     func closePage(index: Int) {
         self.deletePage(index: index)
-        topViewControllerDelegate?.remove(index: index)
+        if index > 0 {
+            topViewControllerDelegate?.remove(index: index)
+        }
     }
     
     func update(image: UIImage?, title: String?, index: Int) {

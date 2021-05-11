@@ -14,14 +14,17 @@ final class WebView: WKWebView {
     private var scrollBeginPosY: CGFloat?
     private let disposeBag = DisposeBag()
     private var operationPageViewController: OperationPageViewController?
+    private var webViewControllerDelegate: WebViewControllerDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         initSelf()
     }
     
-    func set(operationPageViewController: OperationPageViewController?) {
+    func set(operationPageViewController: OperationPageViewController?,
+             webViewControllerDelegate: WebViewControllerDelegate?) {
         self.operationPageViewController = operationPageViewController
+        self.webViewControllerDelegate = webViewControllerDelegate
     }
     
     private func initSelf() {
@@ -44,6 +47,8 @@ final class WebView: WKWebView {
     }
     
     private func checkScroll() {
-        operationPageViewController?.setPageIconCollectionView(isHidden: scrollView.contentOffset.y - (scrollBeginPosY ?? 0) > 0)
+        let isHidden = scrollView.contentOffset.y - (scrollBeginPosY ?? 0) > 0
+        operationPageViewController?.setPageIconCollectionView(isHidden: isHidden)
+        webViewControllerDelegate?.setFavoriteListButton(isHidden: isHidden)
     }
 }

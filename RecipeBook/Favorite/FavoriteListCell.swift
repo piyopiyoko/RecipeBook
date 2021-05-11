@@ -23,6 +23,7 @@ class FavoriteListCell: UICollectionViewCell, LoadPictureProtocol {
     override func awakeFromNib() {
         super.awakeFromNib()
         initDeleteButton()
+        initImageView()
     }
     
     func setup(data: FavoriteModel, favoriteListViewControllerDelegate: FavoriteListViewControllerDelegate) {
@@ -45,6 +46,14 @@ class FavoriteListCell: UICollectionViewCell, LoadPictureProtocol {
             .disposed(by: disposeBag)
         deleteButton.isUserInteractionEnabled = true
         deleteButton.addGestureRecognizer(tapGesture)
+    }
+    
+    private func initImageView() {
+        let cellSize = (UIScreen.main.bounds.width - 10 * 4) / 3
+        imageView.layer.cornerRadius = cellSize / 2
+        imageView.clipsToBounds = true
+        imageView.layer.borderWidth = 1
+        imageView.layer.borderColor = R.color.lightGray()?.cgColor
     }
     
     private func deleteFavorite() {

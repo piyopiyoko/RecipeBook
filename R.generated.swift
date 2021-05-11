@@ -114,10 +114,12 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 2 colors.
+  /// This `R.color` struct is generated, and contains static references to 3 colors.
   struct color {
     /// Color `favoriteColor`.
     static let favoriteColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "favoriteColor")
+    /// Color `lightGray`.
+    static let lightGray = Rswift.ColorResource(bundle: R.hostingBundle, name: "lightGray")
     /// Color `mainColor`.
     static let mainColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "mainColor")
 
@@ -127,6 +129,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func favoriteColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.favoriteColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "lightGray", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func lightGray(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.lightGray, compatibleWith: traitCollection)
     }
     #endif
 
@@ -142,10 +153,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 1 files.
+  /// This `R.file` struct is generated, and contains static references to 2 files.
   struct file {
     /// Resource file `chick.mp3`.
     static let chickMp3 = Rswift.FileResource(bundle: R.hostingBundle, name: "chick", pathExtension: "mp3")
+    /// Resource file `hiyoko.gif`.
+    static let hiyokoGif = Rswift.FileResource(bundle: R.hostingBundle, name: "hiyoko", pathExtension: "gif")
 
     /// `bundle.url(forResource: "chick", withExtension: "mp3")`
     static func chickMp3(_: Void = ()) -> Foundation.URL? {
@@ -153,10 +166,16 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
+    /// `bundle.url(forResource: "hiyoko", withExtension: "gif")`
+    static func hiyokoGif(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.hiyokoGif
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 12 images.
+  /// This `R.image` struct is generated, and contains static references to 13 images.
   struct image {
     /// Image `cross`.
     static let cross = Rswift.ImageResource(bundle: R.hostingBundle, name: "cross")
@@ -164,6 +183,8 @@ struct R: Rswift.Validatable {
     static let heartBookMark = Rswift.ImageResource(bundle: R.hostingBundle, name: "heartBookMark")
     /// Image `heart`.
     static let heart = Rswift.ImageResource(bundle: R.hostingBundle, name: "heart")
+    /// Image `hiyoko.gif`.
+    static let hiyokoGif = Rswift.ImageResource(bundle: R.hostingBundle, name: "hiyoko.gif")
     /// Image `hourglass`.
     static let hourglass = Rswift.ImageResource(bundle: R.hostingBundle, name: "hourglass")
     /// Image `left`.
@@ -201,6 +222,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "heartBookMark", bundle: ..., traitCollection: ...)`
     static func heartBookMark(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.heartBookMark, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "hiyoko.gif", bundle: ..., traitCollection: ...)`
+    static func hiyokoGif(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.hiyokoGif, compatibleWith: traitCollection)
     }
     #endif
 
@@ -301,12 +329,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
   struct nib {
     /// Nib `FavoriteListCell`.
     static let favoriteListCell = _R.nib._FavoriteListCell()
     /// Nib `PageIconCell`.
     static let pageIconCell = _R.nib._PageIconCell()
+    /// Nib `TimerIconView`.
+    static let timerIconView = _R.nib._TimerIconView()
     /// Nib `WebViewListCell`.
     static let webViewListCell = _R.nib._WebViewListCell()
 
@@ -327,6 +357,14 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UINib(name: "TimerIconView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.timerIconView) instead")
+    static func timerIconView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.timerIconView)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UINib(name: "WebViewListCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.webViewListCell) instead")
     static func webViewListCell(_: Void = ()) -> UIKit.UINib {
@@ -340,6 +378,10 @@ struct R: Rswift.Validatable {
 
     static func pageIconCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> PageIconCell? {
       return R.nib.pageIconCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? PageIconCell
+    }
+
+    static func timerIconView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.timerIconView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
     static func webViewListCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> WebViewListCell? {
@@ -376,6 +418,7 @@ struct _R: Rswift.Validatable {
   struct nib: Rswift.Validatable {
     static func validate() throws {
       try _FavoriteListCell.validate()
+      try _TimerIconView.validate()
     }
 
     struct _FavoriteListCell: Rswift.NibResourceType, Rswift.Validatable {
@@ -401,6 +444,23 @@ struct _R: Rswift.Validatable {
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> PageIconCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? PageIconCell
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _TimerIconView: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "TimerIconView"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "hourglass", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'hourglass' is used in nib 'TimerIconView', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
       }
 
       fileprivate init() {}
@@ -458,6 +518,7 @@ struct _R: Rswift.Validatable {
       let name = "Main"
       let navigationController = StoryboardViewControllerResource<UIKit.UINavigationController>(identifier: "navigationController")
       let pageViewController = StoryboardViewControllerResource<PageViewController>(identifier: "PageViewController")
+      let timeUpViewController = StoryboardViewControllerResource<TimeUpViewController>(identifier: "TimeUpViewController")
       let timerViewController = StoryboardViewControllerResource<TimerViewController>(identifier: "TimerViewController")
       let webViewController = StoryboardViewControllerResource<WebViewController>(identifier: "WebViewController")
 
@@ -477,6 +538,10 @@ struct _R: Rswift.Validatable {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: pageViewController)
       }
 
+      func timeUpViewController(_: Void = ()) -> TimeUpViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: timeUpViewController)
+      }
+
       func timerViewController(_: Void = ()) -> TimerViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: timerViewController)
       }
@@ -488,7 +553,6 @@ struct _R: Rswift.Validatable {
       static func validate() throws {
         if UIKit.UIImage(named: "cross", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'cross' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "heart", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'heart' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "heartBookMark", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'heartBookMark' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "hourglass", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'hourglass' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "left", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'left' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "pause", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'pause' is used in storyboard 'Main', but couldn't be loaded.") }
@@ -501,6 +565,7 @@ struct _R: Rswift.Validatable {
         if _R.storyboard.main().favoriteListViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'favoriteListViewController' could not be loaded from storyboard 'Main' as 'FavoriteListViewController'.") }
         if _R.storyboard.main().favoriteNavigationController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'favoriteNavigationController' could not be loaded from storyboard 'Main' as 'FavoriteListNavigationController'.") }
         if _R.storyboard.main().pageViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'pageViewController' could not be loaded from storyboard 'Main' as 'PageViewController'.") }
+        if _R.storyboard.main().timeUpViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'timeUpViewController' could not be loaded from storyboard 'Main' as 'TimeUpViewController'.") }
         if _R.storyboard.main().timerViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'timerViewController' could not be loaded from storyboard 'Main' as 'TimerViewController'.") }
         if _R.storyboard.main().webViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'webViewController' could not be loaded from storyboard 'Main' as 'WebViewController'.") }
         if _R.storyboard.main().navigationController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'navigationController' could not be loaded from storyboard 'Main' as 'UIKit.UINavigationController'.") }
