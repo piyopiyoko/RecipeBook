@@ -22,8 +22,10 @@ class PageIconCell: UICollectionViewCell, LoadPictureProtocol {
         switch data.cellType {
         case .page:
             imageView.image = crop(image: data.image)
+            imageView.layer.borderWidth = 1
         case .plus:
             imageView.image = R.image.plus()
+            imageView.layer.borderWidth = 0
         }
         titleLabel.text = data.title
     }

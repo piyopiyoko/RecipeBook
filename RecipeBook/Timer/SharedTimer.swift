@@ -18,6 +18,7 @@ class SharedTimer {
     let playRelay = BehaviorRelay<Bool>(value: false)
     var timeUpObserver: Observable<String> { timeUpRelay.asObservable() }
     private let timeUpRelay = PublishRelay<String>()
+    private var updateTimeIntervalSinceNow = Date()
     
     private let disposeBag = DisposeBag()
     
@@ -31,13 +32,21 @@ class SharedTimer {
             .subscribe(onNext: { [weak self] _ in
                 self?.updateCountDownTimeRelay()
             }).disposed(by: disposeBag)
+        
+        playRelay
+            .subscribe(onNext: { [weak self] _ in
+                self?.updateTimeIntervalSinceNow = Date()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func updateCountDownTimeRelay() {
-        var time = countDownTimeRelay.value
-        time.countDown()
-        countDownTimeRelay.accept(time)
-        if time.timeUp {
+        var coutnDownTime = countDownTimeRelay.value
+        let interval = Int(updateTimeIntervalSinceNow.timeIntervalSince(Date()))
+        let now = Int(time.intervalTime) + interval
+        coutnDownTime.set(now: now)
+        countDownTimeRelay.accept(coutnDownTime)
+        if coutnDownTime.timeUp {
             playRelay.accept(false)
             timeUpRelay.accept(self.time.displayTime)
         }

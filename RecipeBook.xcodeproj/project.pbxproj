@@ -258,9 +258,7 @@
 				C2476D4824FF83A000AE619B /* SavePictureProtocol.swift */,
 				C2476D4E2508A13D00AE619B /* LoadPictureProtocol.swift */,
 				C2476D502508BD9F00AE619B /* OperationFavoriteProtocol.swift */,
-				C2F69BAC256E240E00EC2F0B /* TimerProtocol.swift */,
 				C2F69BAE256E2E9500EC2F0B /* AudioPlayer.swift */,
-				C2F69BB025776AFC00EC2F0B /* Time.swift */,
 				C25EDA412629B58200B79B86 /* GifAnimateView.swift */,
 			);
 			path = Common;
@@ -300,6 +298,8 @@
 		C2F69BA42562396B00EC2F0B /* Timer */ = {
 			isa = PBXGroup;
 			children = (
+				C2F69BB025776AFC00EC2F0B /* Time.swift */,
+				C2F69BAC256E240E00EC2F0B /* TimerProtocol.swift */,
 				C2F69BA5256239DD00EC2F0B /* TimerViewController.swift */,
 				C2F69BAA25650F2300EC2F0B /* TimerViewModel.swift */,
 				C25EDA49262DA45400B79B86 /* TimeUpViewController.swift */,

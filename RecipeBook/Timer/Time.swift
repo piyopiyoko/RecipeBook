@@ -53,4 +53,10 @@ struct Time {
             minutes = 59
         }
     }
+    
+    mutating func set(now: Int) {
+        hour = now / 3600
+        minutes = now % 3600 / 60
+        second = now % 3600 % 60
+    }
 }
